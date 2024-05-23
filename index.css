@@ -16,6 +16,23 @@ button:hover {
     background-color: rgb(115, 189, 192);
 }
 
-button[target] {
-    background-color: white;
+table, td, th {
+    padding: 20px;
+    border: 2px solid black;
+}
+table {
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+thead tr td {
+    background-color: blue;
+}
+
+thead th {
+    background-color: red;
+    border-collapse: collapse;
+}
+div {
+    padding: 100px;
 }

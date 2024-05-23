@@ -45,6 +45,6 @@ function CriarTabela(){
     tabela.appendChild(thead);
     tabela.appendChild(tbody);
 
-    const body = document.querySelector("body");
-    body.appendChild(tabela);
+    const div = document.querySelector("div");
+    div.appendChild(tabela);
 }
