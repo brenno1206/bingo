@@ -1,4 +1,4 @@
-function CriarTabela(){
+function CriarTabela() {
     // criando elementos principal
 
     const tabela = document.createElement("table");
@@ -32,12 +32,18 @@ function CriarTabela(){
 
     //Criando Elementos
 
-    for(let i = 0; i < 5;i++){
+    for (let i = 0; i < 5; i++) {
         const tr = document.createElement("tr");
-        for(let j = 0; j < 5; j++){
+        for (let j = 0; j < 5; j++) {
             const td = document.createElement("td");
-            td.innerHTML = Math.floor(Math.random()*(10*(j + 1) - (10*j)) + (10*j));
+            td.innerHTML = Math.floor(Math.random() * (15 * (j + 1) - (15 * j)) + (15 * j));
             tr.appendChild(td);
+            for (let c = 0; c < j; c++) {
+                if (Number.parseInt(document.querySelector(`#cartelas > table > tbody > tr:nth-child(${i + 1}) > td:nth-child(${j + 1})`)) === Number.parseInt(document.querySelector(`#cartelas > table > tbody > tr:nth-child(${i + 1}) > td:nth-child(${c + 1})`))){
+                    j--;
+                    break;
+                }
+            }
         }
         tbody.appendChild(tr);
     }
