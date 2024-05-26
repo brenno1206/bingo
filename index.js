@@ -54,6 +54,7 @@ function CriarTabela() {
     for (let j = 0; j < 5; j++) { // loop para coluna
         colunas[j].sort((a, b) => a - b);
     }
+    colunas[2][2] = " ";
 
     // Cria os elementos em HTML após estarem ordenados
     for (let i = 0; i < 5; i++) { // loop do tr - linha
