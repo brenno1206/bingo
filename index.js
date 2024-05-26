@@ -1,11 +1,11 @@
 function CriarTabela() {
-    // criando elementos principal
-
+    // cCriando a eestrutura da tabela
     const tabela = document.createElement("table");
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
 
-    //Criando cabeçalho
+    // Nome do jogador
+
     const tr_nome = document.createElement("tr");
     const td_nome = document.createElement("td");
     td_nome.innerHTML = "nome";
@@ -13,40 +13,58 @@ function CriarTabela() {
     thead.appendChild(tr_nome);
     tr_nome.appendChild(td_nome);
 
-    const th_B = document.createElement("th");
-    th_B.innerHTML = "B";
-    const th_I = document.createElement("th");
-    th_I.innerHTML = "I";
-    const th_N = document.createElement("th");
-    th_N.innerHTML = "N";
-    const th_G = document.createElement("th");
-    th_G.innerHTML = "G";
-    const th_O = document.createElement("th");
-    th_O.innerHTML = "O";
+    // BINGO
 
-    thead.appendChild(th_B);
-    thead.appendChild(th_I);
-    thead.appendChild(th_N);
-    thead.appendChild(th_G);
-    thead.appendChild(th_O);
+    const tr_titulo = document.createElement("tr");
+    const letras = ["B", "I", "N", "G", "O"];
+    for (const letra of letras) {
+        const th = document.createElement("th");
+        th.innerHTML = letra;
+        tr_titulo.appendChild(th);
+    }
+    thead.appendChild(tr_titulo);
 
-    //Criando Elementos
 
-    for (let i = 0; i < 5; i++) {
-        const tr = document.createElement("tr");
-        for (let j = 0; j < 5; j++) {
-            const td = document.createElement("td");
-            td.innerHTML = Math.floor(Math.random() * (15 * (j + 1) - (15 * j)) + (15 * j));
-            tr.appendChild(td);
-            for (let c = 0; c < j; c++) {
-                if (Number.parseInt(document.querySelector(`#cartelas > table > tbody > tr:nth-child(${i + 1}) > td:nth-child(${j + 1})`)) === Number.parseInt(document.querySelector(`#cartelas > table > tbody > tr:nth-child(${i + 1}) > td:nth-child(${c + 1})`))){
-                    j--;
-                    break;
+    //Criando Números
+
+    const numeros_anteriores = {};
+    const colunas = [[], [], [], [], []]; 
+    for (let i = 0; i < 5; i++) { // loop da linha
+        for (let j = 0; j < 5; j++) { // loop da coluna
+            let num;
+            let duplicada;
+            do { // loop para não duplicar números
+                num = Math.floor(Math.random() * (15 * (j + 1) - (15 * j)) + (15 * j));
+                duplicada = false;
+                for (let k = 0; k < i; k++) { // loop para verificar os números anteriores
+                    if (num === numeros_anteriores[`num_tr${k}td${j}`]) {
+                        duplicada = true;
+                        break;
+                    }
                 }
-            }
+            } while (duplicada);
+
+            colunas[j].push(num); // põe o número na sua coluna
+            numeros_anteriores[`num_tr${i}td${j}`] = num;
+        }
+    }
+
+    // ordena os números
+    for (let j = 0; j < 5; j++) { // loop para coluna
+        colunas[j].sort((a, b) => a - b);
+    }
+
+    // Cria os elementos em HTML após estarem ordenados
+    for (let i = 0; i < 5; i++) { // loop do tr - linha
+        const tr = document.createElement("tr");
+        for (let j = 0; j < 5; j++) { // loop do td - coluna
+            const td = document.createElement("td");
+            td.innerHTML = colunas[j][i];
+            tr.appendChild(td);
         }
         tbody.appendChild(tr);
     }
+
     //Criando a Tabela
     tabela.appendChild(thead);
     tabela.appendChild(tbody);

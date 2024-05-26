@@ -36,3 +36,13 @@ thead th {
 div {
     padding: 100px;
 }
+table {
+    float: left;
+    width: calc(33.33% - 20px); /* 33.33% para 3 tabelas em uma linha, -20px para margens */
+    margin: 10px;
+}
+
+/* Limpa a flutuação após cada 3 tabelas */
+table:nth-child(3n+1) {
+    clear: left;
+}
