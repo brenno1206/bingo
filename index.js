@@ -6,9 +6,10 @@ function CriarTabela() {
 
     // Nome do jogador
 
+    var nome = prompt("digite seu nome");
     const tr_nome = document.createElement("tr");
     const td_nome = document.createElement("td");
-    td_nome.innerHTML = "nome";
+    td_nome.innerHTML = nome;
     td_nome.colSpan = 5;
     thead.appendChild(tr_nome);
     tr_nome.appendChild(td_nome);
