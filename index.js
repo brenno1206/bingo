@@ -38,7 +38,7 @@ function CriarTabela() {
                 num = Math.floor(Math.random() * (15 * (j + 1) - (15 * j)) + (15 * j));
                 duplicada = false;
                 for (let k = 0; k < i; k++) { // loop para verificar os números anteriores
-                    if (num === numeros_anteriores[`num_tr${k}td${j}`]) {
+                    if (num === numeros_anteriores[`num_tr${k}td${j}`] || num === 0) {
                         duplicada = true;
                         break;
                     }
@@ -54,7 +54,7 @@ function CriarTabela() {
     for (let j = 0; j < 5; j++) { // loop para coluna
         colunas[j].sort((a, b) => a - b);
     }
-    colunas[2][2] = " ";
+    colunas[2][2] = "O";
 
     // Cria os elementos em HTML após estarem ordenados
     for (let i = 0; i < 5; i++) { // loop do tr - linha
