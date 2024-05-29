@@ -1,5 +1,5 @@
 function CriarTabela() {
-    // cCriando a eestrutura da tabela
+    // Criando a estrutura da tabela
     const tabela = document.createElement("table");
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
@@ -28,8 +28,7 @@ function CriarTabela() {
 
     //Criando Números
 
-    const numeros_anteriores = {};
-    const colunas = [[], [], [], [], []]; 
+    const colunas = [[], [], [], [], []]; // array de arrays para armazenar os números dentro de suas respectivas colunas
     for (let i = 0; i < 5; i++) { // loop da linha
         for (let j = 0; j < 5; j++) { // loop da coluna
             let num;
@@ -38,7 +37,7 @@ function CriarTabela() {
                 num = Math.floor(Math.random() * (15 * (j + 1) - ((15 * j) + 1)) + ((15 * j) + 1));
                 duplicada = false;
                 for (let k = 0; k < i; k++) { // loop para verificar os números anteriores
-                    if (num === numeros_anteriores[`num_tr${k}td${j}`] || num === 0) {
+                    if (num === colunas[j][k] || num === 0) {
                         duplicada = true;
                         break;
                     }
@@ -46,15 +45,14 @@ function CriarTabela() {
             } while (duplicada);
 
             colunas[j].push(num); // põe o número na sua coluna
-            numeros_anteriores[`num_tr${i}td${j}`] = num;
         }
     }
 
     // ordena os números
-    for (let j = 0; j < 5; j++) { // loop para coluna
+    for (let j = 0; j < 5; j++) { // loop para ordenar as colunas
         colunas[j].sort((a, b) => a - b);
     }
-    colunas[2][2] = "O";
+    colunas[2][2] = "X"; // meio da cartela
 
     // Cria os elementos em HTML após estarem ordenados
     for (let i = 0; i < 5; i++) { // loop do tr - linha
