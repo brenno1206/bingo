@@ -35,7 +35,7 @@ function CriarTabela() {
             let num;
             let duplicada;
             do { // loop para não duplicar números
-                num = Math.floor(Math.random() * (15 * (j + 1) - (15 * j)) + (15 * j));
+                num = Math.floor(Math.random() * (15 * (j + 1) - ((15 * j) + 1)) + ((15 * j) + 1));
                 duplicada = false;
                 for (let k = 0; k < i; k++) { // loop para verificar os números anteriores
                     if (num === numeros_anteriores[`num_tr${k}td${j}`] || num === 0) {
